@@ -1,0 +1,17 @@
+<div class="klr-body">
+    <div class="klr-content">
+        <header class="klr-header">
+            <div class="klr-logo">
+                <div style="background-image:url({{logo}})"></div>
+            </div>
+            <h1 class="klr-title">{{title}}</h1>
+        </header>
+        <section class="klr-content-wrapper">
+            <ul class="klr-content-list">
+                {{#items}}
+                <li data-type="" data-navigable class="klr-content-list-item"><a href="{{link}}" title="{{title}}">{{title}}</a></li>
+                {{/items}}
+            </ul>            
+        </section>
+    </div>
+</div>
