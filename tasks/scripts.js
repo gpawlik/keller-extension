@@ -30,6 +30,10 @@ gulp.task('scripts', (cb) => {
           test: /\.js$/,
           loaders: ['babel'],
           exclude: /node_modules/
+        }, {
+          test: /\.html$/,
+          loaders: ['mustache'],
+          exclude: /node_modules/
         }]
       },
       eslint: {
