@@ -1,0 +1,18 @@
+{
+  "appName": {
+    "message": "Keller",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "Keller",
+    "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
+  },
+  "appDescription": {
+    "message": "Extension to improve web accesibility.",
+    "description": "The description of the application"
+  },
+  "browserActionTitle": {
+    "message": "Keller",
+    "description": "The description of the application"
+  }
+}
