@@ -2,18 +2,39 @@ import $ from 'jquery';
 import template from './../pages/page.html';
 
 
-const getContent = (function(url) {
-        
-    const content = {};
+const content = (function() {       
     
-    content.title = getPageTitle;
-    content.logo  = getPageLogo;
-    content.items = [];    
+    const klrData = JSON.parse(localStorage.getItem('klr_data'));  
+    const _content = {}; 
+    
+    if(klrData) {          
+        _content.title = klrData.title;
+        _content.logo  = klrData.logo;
+        _content.url = klrData.feed_url;
+        _content.items = [];          
+    }
+                
+    const getContent = function(klrData) {
+        console.log('getting_content');
+        getFeed();
+    };
+    
+/* {"title":"EL PAÍS: el periódico global",
+    "logo":{"length":0,"prevObject":{"length":0,"prevObject":{"0":{},"length":1,"prevObject":{"0":{},"context":{},"length":1},"context":{},"selector":"head"},"context":{},"selector":"head link[rel=apple-touch-icon]"},"context":{}},
+    "feed_url":"http://ep01.epimg.net/rss/elpais/portada.xml"} */   
+    
+    const setContent = function() {
+        console.log('setting_content');
+        const newData = {
+            title: getPageTitle(),
+            logo: getPageLogo(),
+            feed_url: getPageFeed()             
+        };           
+        localStorage.setItem('klr_data', JSON.stringify(newData));        
+    };
         
-    const getFeed = function(url) {
-        $.get(url, function (data) {  
-                                            
-            console.log('got data ->', data);
+    function getFeed() {
+        $.get(_content.url, function (data) {                                   
             $(data).find("item").each(function () {
                 var el = $(this);
                 const item = {
@@ -21,34 +42,41 @@ const getContent = (function(url) {
                     link: el.find("link").text(),
                     description: el.find("description").text()
                 };
-                content.items.push(item);
+                _content.items.push(item);
             });
             console.timeEnd('loadtime');
-            render(content);
+            render(_content);
         }); 
     }   
     
-    function getPageTitle(data) {
+    function getPageTitle() {
         return $('head').find('title').html();               
     }
+       
         
-    function getPageLogo(data) {
-        return $('head').find('link[rel=apple-touch-icon]');        
+    function getPageLogo() {
+        return $('meta[property="og:image"]').attr('content');        
     }  
     
-    function getPageFeed(data) {
+    function getPageFeed() {
         return $('head').find('link[type="application/rss+xml"]').first().attr('href');        
     }  
 
     function render(data) {
         const html = template(data); 
-        console.log(html, data);
-        $('body').append(html); 
+        console.log(html, data);       
+        document.getElementsByTagName('html')[0].innerHTML = "<head></head><body></body>";
+        document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeEnd', html);
+        chrome.tabs.insertCSS(null, { file: "styles/contentscript.css" });
     }    
     
     return {
-        getData: getFeed
+        getContent: getContent,
+        setContent: setContent,
+        getPageTitle: getPageTitle, 
+        getPageLogo: getPageLogo,
+        getPageFeed: getPageFeed     
     }
 })();    
     
-exports.content = getContent;
+exports.content = content;

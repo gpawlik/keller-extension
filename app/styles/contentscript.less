@@ -1,0 +1,64 @@
+@import "variables.less";
+@import "reset.less";
+
+.klr-body {
+    font-size:12px;
+    font-family:'Ubuntu', Helvetica, sans-serif;
+    color:@primary-color-dark;  
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1;
+        font-weight:600;
+    }  
+    .klr-content {
+        background:#fff;
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:999999;    
+    }
+    .klr-header {
+        padding:30px 100px;
+        min-height:100px;
+        border-bottom:1px solid @primary-color-light;
+        display:table;
+        h1 {
+            font-size:5em;
+            display:table-cell;
+            vertical-align:middle;
+        }
+        .klr-logo {
+            display:table-cell;
+            vertical-align:middle;            
+            > div {
+                width:100px;
+                height:100px;
+                background-color:@primary-color-light; 
+                background-size:cover;
+                margin-right:2em;                 
+            }              
+        }
+    } 
+    .klr-content-wrapper {
+        padding:50px 100px;
+    }    
+    .klr-content-list {
+        li {
+            padding:35px 0;
+            font-size:4em;
+            line-height:100%;
+            font-weight:600;
+            color:@primary-color-dark;
+            &.active, &.active a, a:hover {                    
+                color:@active-color;
+                //text-decoration:underline;
+                border:none;                  
+            }              
+            a {
+                color:@primary-color-dark;
+                text-decoration:none;                              
+            }            
+        }
+    }
+}
