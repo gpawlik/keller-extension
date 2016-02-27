@@ -25,7 +25,7 @@ const navigation = (function() {
                     else {
                         $elements.last().addClass(active_class);
                     }
-                }                      
+                }                    
                 return false;
             }
         });
@@ -40,7 +40,7 @@ const navigation = (function() {
     function contentBack() {
         console.log("going back");
         window.history.back();
-    }    
+    }      
     
     return {
         contentNavigate: contentNavigate,

@@ -61,10 +61,14 @@ const content = (function() {
     function getPageFeed() {
         return $('head').find('link[type="application/rss+xml"]').first().attr('href');        
     }  
+    
+    function getCurrentText() {
+        return $('.klr-body').find('[data-navigable].active').first().text();
+    }  
 
     function render(data) {
         const html = template(data); 
-        console.log(html, data);       
+        //console.log(html, data);       
         document.getElementsByTagName('html')[0].innerHTML = "<head></head><body></body>";
         document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeEnd', html);  
         $('.klr-body').find('[data-navigable]').first().addClass('active');       
@@ -75,7 +79,8 @@ const content = (function() {
         setContent: setContent,
         getPageTitle: getPageTitle, 
         getPageLogo: getPageLogo,
-        getPageFeed: getPageFeed     
+        getPageFeed: getPageFeed,
+        getCurrentText: getCurrentText     
     }
 })();    
     
