@@ -66,8 +66,8 @@ const content = (function() {
         const html = template(data); 
         console.log(html, data);       
         document.getElementsByTagName('html')[0].innerHTML = "<head></head><body></body>";
-        document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeEnd', html);
-        chrome.tabs.insertCSS(null, { file: "styles/contentscript.css" });
+        document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeEnd', html);  
+        $('.klr-body').find('[data-navigable]').first().addClass('active');       
     }    
     
     return {
