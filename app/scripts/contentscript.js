@@ -3,6 +3,7 @@
 import $ from 'jquery';
 import { content } from './content';
 import { navigation } from './navigation';
+import './lib/speech';
 
 console.time('loadtime');
 console.time('DOMload');
@@ -51,4 +52,25 @@ $(document).keydown(function(e) {
             break;                  
     }
 }); 
+
+// Voice navigation
+if (annyang) {
+    var commands = {
+        "(next)": function() {
+            console.log('next!');
+            navigation.contentNavigate('next'); 
+        },
+        "(read)": function() {
+            console.log('read!');
+            navigation.contentRead('next'); 
+        }
+    }
+        
+    annyang.addCommands(commands); 
+    annyang.addCallback("resultMatch", function(n, a, o) {
+        console.log("said: " + n + ", cmd: " + a + ", phrases: " + o)
+    });
+    annyang.debug(); 
+    annyang.start();
+}
     
