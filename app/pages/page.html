@@ -9,7 +9,11 @@
         <section class="klr-content-wrapper">
             <ul class="klr-content-list">
                 {{#items}}
-                <li data-type="" data-navigable class="klr-content-list-item"><a href="{{link}}" title="{{title}}">{{title}}</a></li>
+                <li data-type="" data-navigable class="klr-content-list-item">
+                    <!--<a href="{{link}}" title="{{title}}">{{title}}</a>-->
+                    <h3>{{title}}.</h3> 
+                    <p>{{description}}.</p>
+                </li>
                 {{/items}}
             </ul>            
         </section>

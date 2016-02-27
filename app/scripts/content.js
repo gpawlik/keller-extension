@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import template from './../pages/page.html';
+import { navigation } from './navigation';
 
 
 const content = (function() {       
@@ -63,7 +64,7 @@ const content = (function() {
     }  
     
     function getCurrentText() {
-        return $('.klr-body').find('[data-navigable].active').first().text();
+        return $('.klr-body').find('[data-navigable].active .read').first().text();
     }  
 
     function render(data) {
@@ -71,7 +72,8 @@ const content = (function() {
         //console.log(html, data);       
         document.getElementsByTagName('html')[0].innerHTML = "<head></head><body></body>";
         document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeEnd', html);  
-        $('.klr-body').find('[data-navigable]').first().addClass('active');       
+        //$('.klr-body').find('[data-navigable]').first().addClass('active');      
+        navigation.contentNavigate('next');         
     }    
     
     return {

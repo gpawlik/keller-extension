@@ -45,18 +45,27 @@
     }    
     .klr-content-list {
         li {
-            padding:35px 0;
-            font-size:4em;
+            padding:35px 0;            
             line-height:100%;
             font-weight:600;
             color:@primary-color-dark;
             display:none;
-            &.active, &.active a, a:hover {                    
+            &.active {
+                display:block;
+            }
+            &.active .read, &.active a, a:hover {                    
                 color:@active-color;
                 //text-decoration:underline;
-                border:none;    
-                display:block;              
-            }              
+                border:none;                              
+            }   
+            h3 {
+                font-size:3em;
+                margin-bottom:20px;
+            }   
+            p {
+                font-size:2.5em;
+                line-height:100%;
+            }        
             a {
                 color:@primary-color-dark;
                 text-decoration:none;                              
