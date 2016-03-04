@@ -54,11 +54,15 @@ $(document).keydown(function(e) {
 }); 
 
 // Voice navigation
-if (annyang) {
+if (typeof annyang !== 'undefined') {
     var commands = {
         "(next)": function() {
             console.log('next!');
             navigation.contentNavigate('next'); 
+        },
+        "(previous)": function() {
+            console.log('next!');
+            navigation.contentNavigate('prev'); 
         },
         "(read)": function() {
             console.log('read!');
